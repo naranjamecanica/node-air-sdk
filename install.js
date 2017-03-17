@@ -32,7 +32,7 @@ fs.stat(libFolder, function(err, stats) {
       process.exit(0);
   }
 
-  console.log("Downloading Adobe AIR SDK, please wait...");
+  console.log("Downloading Adobe AIR SDK, please wait....");
   
   progress(request(downloadUrl, function (error, response, body) {
     if(error || response.statusCode !== 200){
