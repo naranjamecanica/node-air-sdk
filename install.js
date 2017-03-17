@@ -6,13 +6,25 @@ var playerGlobal = require('playerglobal-latest');
 var packageMetadata = require('./package.json');
 var shell = require('shelljs');
 var downloadUrl = packageMetadata.airSdk[process.platform];
-var name = 'AIRSDK_Compiler.tbz2';
 var libFolder = 'lib/AIR_SDK';
-var tmpLocation = path.join(__dirname, 'lib', name);
 var frameworksDir = path.join(__dirname, libFolder);
 var pathFlexFrameworksSWC = path.join(__dirname, libFolder, 'frameworks/libs/');
 var progress = require('request-progress');
 var AdmZip = require('adm-zip');
+
+
+var name;
+switch(process.platform){
+  case 'darwin' : 
+    name = 'AIRSDK_Compiler.tbz2';
+    break;
+  case 'win32' :
+    name = 'AIRSDK_Compiler.zip';
+    break;
+}
+
+var tmpLocation = path.join(__dirname, 'lib', name);
+
 
 fs.stat(libFolder, function(err, stats) {
   if(!err) {
