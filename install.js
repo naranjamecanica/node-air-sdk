@@ -47,10 +47,10 @@ fs.stat(libFolder, function(err, stats) {
   })
   .pipe(fs.createWriteStream(tmpLocation));
 
-  process.on('uncaughtException', function(err) {
-    console.error('FATAL! Uncaught exception: ' + err);
-    process.exit(1);
-  });
+//  process.on('uncaughtException', function(err) {
+//    console.error('FATAL! Uncaught exception: ' + err);
+//    process.exit(1);
+//  });
 });
 
 function handleDownload() {
