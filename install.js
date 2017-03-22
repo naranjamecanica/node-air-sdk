@@ -33,29 +33,49 @@ fs.stat(libFolder, function(err, stats) {
   }
 
   console.log("Downloading Adobe AIR SDK, please wait....");
-  
-  progress(request(downloadUrl, function (error, response, body) {
-    if(error || response.statusCode !== 200){
+    
+  progress(request('https://az412801.vo.msecnd.net/vhd/VMBuild_20141027/VirtualBox/IE11/Windows/IE11.Win8.1.For.Windows.VirtualBox.zip'), {
+    // throttle: 2000,                    // Throttle the progress event to 2000ms, defaults to 1000ms
+    // delay: 1000,                       // Only start to emit after 1000ms delay, defaults to 0ms
+    // lengthHeader: 'x-transfer-length'  // Length header to use, defaults to content-length
+  })
+  .on('progress', function (state) {
+      // The state is an object that looks like this:
+      // {
+      //     percent: 0.5,               // Overall percent (between 0 to 1)
+      //     speed: 554732,              // The download speed in bytes/sec
+      //     size: {
+      //         total: 90044871,        // The total payload size in bytes
+      //         transferred: 27610959   // The transferred payload size in bytes
+      //     },
+      //     time: {
+      //         elapsed: 36.235,        // The total elapsed seconds since the start (3 decimals)
+      //         remaining: 81.403       // The remaining seconds to finish (3 decimals)
+      //     }
+      // }
+      process.stdout.write('Downloading progress: ' + Math.round(state.percent * 100) + "% \r");
+  })
+  .on('error', function (err) {
       console.error("Could not download AIR SDK!");
       process.exit(1);
-      return;
-    }    
+  })
+  .on('end', function () {
+    // Do something after request finishes
+    console.log("AIR SDK download complete!");     
     handleDownload();
-  }))
-  .on('progress', function (state) {
-    process.stdout.write('Downloading progress: ' + state.percent + "% \r");
   })
   .pipe(fs.createWriteStream(tmpLocation));
-
+  
+//
 //  process.on('uncaughtException', function(err) {
-//    console.error('FATAL! Uncaught exception: ' + err);
+//    console.error((new Date).toUTCString() + ' uncaughtException:', err.message)
+//    console.error(err.stack)
 //    process.exit(1);
 //  });
 });
 
 function handleDownload() {
   
-    console.log("AIR SDK download complete!");
     shell.mkdir(libFolder);
     console.log("Preparing to extract file...");
     
