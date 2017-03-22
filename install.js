@@ -34,7 +34,7 @@ fs.stat(libFolder, function(err, stats) {
 
   console.log("Downloading Adobe AIR SDK, please wait....");
     
-  progress(request('https://az412801.vo.msecnd.net/vhd/VMBuild_20141027/VirtualBox/IE11/Windows/IE11.Win8.1.For.Windows.VirtualBox.zip'), {
+  progress(request(downloadUrl), {
     // throttle: 2000,                    // Throttle the progress event to 2000ms, defaults to 1000ms
     // delay: 1000,                       // Only start to emit after 1000ms delay, defaults to 0ms
     // lengthHeader: 'x-transfer-length'  // Length header to use, defaults to content-length
