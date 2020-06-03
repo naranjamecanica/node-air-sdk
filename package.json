@@ -1,6 +1,6 @@
 {
   "name": "node-air-sdk",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "AIR SDK for nodejs",
   "main": "lib/air",
   "scripts": {
@@ -14,8 +14,8 @@
     "flashplayer"
   ],
   "author": {
-    "name": "Maxwell Da Silva",
-    "email": "dayvson@gmail.com"
+    "name": "Martijn Swart",
+    "email": "opensource@studiokloek.nl"
   },
   "bin": {
     "mxmlc": "./bin/mxmlc",
@@ -30,16 +30,16 @@
   },
   "license": "MIT",
   "dependencies": {
-    "playerglobal-latest": "^0.1.6",
-    "request": "^2.51.0",
-    "shelljs": "^0.7.7",
-    "request-progress": "^3.0.0"
+    "playerglobal-latest": "^0.1.7",
+    "request": "^2.88.2",
+    "shelljs": "^0.8.4",
+    "request-progress": "^3.0.0",
+    "adm-zip": "^0.4.14"
   },
   "devDependencies": {
-    "adm-zip": "^0.4.7",
-    "chai": "^3.5.0",
+    "chai": "^4.2.0",
     "istanbul": "^0.4.5",
-    "jshint": "^2.6.0",
-    "mocha": "^3.2.0"
+    "jshint": "^2.11.1",
+    "mocha": "^7.2.0"
   }
 }
